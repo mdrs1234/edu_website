@@ -13,8 +13,10 @@
     <div class="space-x-4">
       <a href="#courses" class="hover:text-blue-600">Courses</a>
       <a href="#live" class="hover:text-blue-600">Live Classes</a>
-      <a href="#dashboard" class="hover:text-blue-600">Dashboard</a>
+      <a href="#dashboard" class="hover:text-blue-600" id="dashboard-link" style="display: none;">Dashboard</a>
       <a href="#login" class="bg-blue-600 text-white px-4 py-2 rounded">Login / Signup</a>
+      <a href="#admin-login" class="bg-green-600 text-white px-4 py-2 rounded">Admin Login</a>
+      <button id="logout-btn" class="bg-red-600 text-white px-4 py-2 rounded" style="display: none;" onclick="logout()">Logout</button>
     </div>
   </nav>
 
@@ -29,31 +31,34 @@
   </section>
 
   <!-- Courses Section -->
- <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-  <!-- Course 1 -->
-  <div class="bg-white p-5 rounded shadow">
-    <img src="https://source.unsplash.com/400x200/?python,coding" alt="Python" class="rounded mb-4">
-    <h4 class="text-xl font-bold">Python for Beginners</h4>
-    <p class="mt-2">Master the basics of Python programming in just 4 weeks.</p>
-    <a href="https://rzp.io/l/python-course-buy" target="_blank" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
-  </div>
+  <section id="courses" class="p-10">
+    <h3 class="text-3xl font-semibold text-center mb-8">Popular Courses</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Course 1 -->
+      <div class="bg-white p-5 rounded shadow">
+        <img src="https://source.unsplash.com/400x200/?python,coding" alt="Python" class="rounded mb-4">
+        <h4 class="text-xl font-bold">Python for Beginners</h4>
+        <p class="mt-2">Master the basics of Python programming in just 4 weeks.</p>
+        <a href="https://rzp.io/l/python-course-buy" target="_blank" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+      </div>
 
-  <!-- Course 2 -->
-  <div class="bg-white p-5 rounded shadow">
-    <img src="https://source.unsplash.com/400x200/?data,science" alt="Data Science" class="rounded mb-4">
-    <h4 class="text-xl font-bold">Data Science Bootcamp</h4>
-    <p class="mt-2">Hands-on learning with real-world datasets and projects.</p>
-    <a href="https://rzp.io/l/data-science-course-buy" target="_blank" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
-  </div>
+      <!-- Course 2 -->
+      <div class="bg-white p-5 rounded shadow">
+        <img src="https://source.unsplash.com/400x200/?data,science" alt="Data Science" class="rounded mb-4">
+        <h4 class="text-xl font-bold">Data Science Bootcamp</h4>
+        <p class="mt-2">Hands-on learning with real-world datasets and projects.</p>
+        <a href="https://rzp.io/l/data-science-course-buy" target="_blank" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+      </div>
 
-  <!-- Course 3 -->
-  <div class="bg-white p-5 rounded shadow">
-    <img src="https://source.unsplash.com/400x200/?web,development" alt="Web Dev" class="rounded mb-4">
-    <h4 class="text-xl font-bold">Web Development</h4>
-    <p class="mt-2">Build responsive websites using HTML, CSS, JS & React.</p>
-    <a href="https://rzp.io/l/web-dev-course-buy" target="_blank" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
-  </div>
-</div>
+      <!-- Course 3 -->
+      <div class="bg-white p-5 rounded shadow">
+        <img src="https://source.unsplash.com/400x200/?web,development" alt="Web Dev" class="rounded mb-4">
+        <h4 class="text-xl font-bold">Web Development</h4>
+        <p class="mt-2">Build responsive websites using HTML, CSS, JS & React.</p>
+        <a href="https://rzp.io/l/web-dev-course-buy" target="_blank" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+      </div>
+    </div>
+  </section>
 
   <!-- Live Classes Section -->
   <section id="live" class="bg-gray-100 p-10">
@@ -64,21 +69,29 @@
     </div>
   </section>
 
-  <!-- Dashboard Section -->
-  <section id="dashboard" class="p-10">
+  <!-- Dashboard Section (Hidden by default, only visible after admin login) -->
+  <section id="dashboard" class="p-10" style="display: none;">
+    <div class="bg-green-100 p-4 rounded mb-6">
+      <h3 class="text-2xl font-bold text-green-800">Welcome, Admin!</h3>
+      <p class="text-green-700">You are now logged in as administrator.</p>
+    </div>
+    
     <h3 class="text-3xl font-semibold text-center mb-6">Admin Dashboard</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
       <div class="bg-white p-5 rounded shadow">
         <h4 class="text-xl font-bold">Manage Courses</h4>
         <p class="mt-2">Add, update, or delete courses with full details.</p>
+        <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onclick="showSection('upload')">Add New Course</button>
       </div>
       <div class="bg-white p-5 rounded shadow">
         <h4 class="text-xl font-bold">Student Records</h4>
         <p class="mt-2">View enrolled students and track their progress.</p>
+        <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onclick="showStudentRecords()">View Students</button>
       </div>
       <div class="bg-white p-5 rounded shadow">
         <h4 class="text-xl font-bold">Payment Analytics</h4>
         <p class="mt-2">Monitor revenue and transactions in real-time.</p>
+        <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onclick="showAnalytics()">View Analytics</button>
       </div>
     </div>
   </section>
@@ -87,21 +100,21 @@
   <section id="payment" class="p-10 bg-blue-50">
     <h3 class="text-3xl font-semibold text-center mb-6">Course Payment</h3>
     <div class="max-w-lg mx-auto bg-white p-6 rounded shadow">
-      <form>
+      <form onsubmit="processPayment(event)">
         <label class="block mb-2">Cardholder Name</label>
-        <input type="text" class="w-full p-2 border rounded mb-4" required>
+        <input type="text" id="cardholder-name" class="w-full p-2 border rounded mb-4" required>
 
         <label class="block mb-2">Card Number</label>
-        <input type="text" class="w-full p-2 border rounded mb-4" required>
+        <input type="text" id="card-number" class="w-full p-2 border rounded mb-4" placeholder="1234 5678 9012 3456" required>
 
         <div class="flex gap-4">
           <div class="w-1/2">
             <label class="block mb-2">Expiry</label>
-            <input type="text" placeholder="MM/YY" class="w-full p-2 border rounded" required>
+            <input type="text" id="expiry" placeholder="MM/YY" class="w-full p-2 border rounded" required>
           </div>
           <div class="w-1/2">
             <label class="block mb-2">CVV</label>
-            <input type="text" class="w-full p-2 border rounded" required>
+            <input type="text" id="cvv" class="w-full p-2 border rounded" required>
           </div>
         </div>
 
@@ -110,95 +123,309 @@
     </div>
   </section>
 
-  <!-- Course Upload Section -->
-  <section id="upload" class="p-10">
+  <!-- Course Upload Section (Only visible to admin) -->
+  <section id="upload" class="p-10" style="display: none;">
     <h3 class="text-3xl font-semibold text-center mb-6">Upload a New Course</h3>
     <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
-      <form>
+      <form onsubmit="uploadCourse(event)">
         <label class="block mb-2">Course Title</label>
-        <input type="text" class="w-full p-2 border rounded mb-4" required>
+        <input type="text" id="course-title" class="w-full p-2 border rounded mb-4" required>
 
         <label class="block mb-2">Description</label>
-        <textarea class="w-full p-2 border rounded mb-4" rows="4" required></textarea>
+        <textarea id="course-description" class="w-full p-2 border rounded mb-4" rows="4" required></textarea>
+
+        <label class="block mb-2">Course Price ($)</label>
+        <input type="number" id="course-price" class="w-full p-2 border rounded mb-4" required>
+
+        <label class="block mb-2">Course Category</label>
+        <select id="course-category" class="w-full p-2 border rounded mb-4" required>
+          <option value="">Select Category</option>
+          <option value="programming">Programming</option>
+          <option value="data-science">Data Science</option>
+          <option value="web-development">Web Development</option>
+          <option value="mobile-development">Mobile Development</option>
+          <option value="design">Design</option>
+        </select>
 
         <label class="block mb-2">Upload Video</label>
         <input type="file" accept="video/*" class="w-full p-2 border rounded mb-4" required>
+
+        <label class="block mb-2">Upload Course Thumbnail</label>
+        <input type="file" accept="image/*" class="w-full p-2 border rounded mb-4" required>
 
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700">Upload Course</button>
       </form>
     </div>
   </section>
 
-  <!-- Login/Signup Section -->
+  <!-- Student Login/Signup Section -->
   <section id="login" class="p-10">
-    <h3 class="text-3xl font-semibold text-center mb-6">Login / Signup</h3>
+    <h3 class="text-3xl font-semibold text-center mb-6">Student Login / Signup</h3>
     <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
-      <form>
+      <div class="flex mb-4">
+        <button class="w-1/2 py-2 bg-blue-600 text-white rounded-l" id="login-tab" onclick="showLoginForm()">Login</button>
+        <button class="w-1/2 py-2 bg-gray-300 text-gray-700 rounded-r" id="signup-tab" onclick="showSignupForm()">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" onsubmit="studentLogin(event)">
         <label class="block mb-2">Email</label>
-        <input type="email" class="w-full p-2 border rounded mb-4" required>
+        <input type="email" id="student-email" class="w-full p-2 border rounded mb-4" required>
 
         <label class="block mb-2">Password</label>
-        <input type="password" class="w-full p-2 border rounded mb-6" required>
+        <input type="password" id="student-password" class="w-full p-2 border rounded mb-6" required>
 
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700">Login</button>
-        <p class="mt-4 text-center">Don't have an account? <a href="#" class="text-blue-600">Sign up here</a></p>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" style="display: none;" onsubmit="studentSignup(event)">
+        <label class="block mb-2">Full Name</label>
+        <input type="text" id="signup-name" class="w-full p-2 border rounded mb-4" required>
+
+        <label class="block mb-2">Email</label>
+        <input type="email" id="signup-email" class="w-full p-2 border rounded mb-4" required>
+
+        <label class="block mb-2">Password</label>
+        <input type="password" id="signup-password" class="w-full p-2 border rounded mb-4" required>
+
+        <label class="block mb-2">Confirm Password</label>
+        <input type="password" id="signup-confirm-password" class="w-full p-2 border rounded mb-6" required>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700">Sign Up</button>
       </form>
     </div>
   </section>
+
   <!-- Admin Login Section -->
   <section id="admin-login" class="p-10">
-  <h3 class="text-3xl font-semibold text-center mb-6">Admin Login</h3>
-  <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
-    <form onsubmit="return adminLogin(event)">
-      <label class="block mb-2">Admin Email</label>
-      <input type="email" id="admin-email" class="w-full p-2 border rounded mb-4" required>
+    <h3 class="text-3xl font-semibold text-center mb-6">Admin Login</h3>
+    <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+      <div id="login-error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4" style="display: none;">
+        Invalid admin credentials. Please try again.
+      </div>
+      
+      <form onsubmit="adminLogin(event)">
+        <label class="block mb-2">Admin Email</label>
+        <input type="email" id="admin-email" class="w-full p-2 border rounded mb-4" required>
 
-      <label class="block mb-2">Password</label>
-      <input type="password" id="admin-password" class="w-full p-2 border rounded mb-6" required>
+        <label class="block mb-2">Password</label>
+        <input type="password" id="admin-password" class="w-full p-2 border rounded mb-6" required>
 
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700">Login as Admin</button>
-    </form>
-  </div>
-</section>
-
-<!-- Admin Dashboard Section (initially hidden) -->
-<section id="dashboard" class="p-10 hidden">
-  <h3 class="text-3xl font-semibold text-center mb-6">Admin Dashboard</h3>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-    <div class="bg-white p-5 rounded shadow">
-      <h4 class="text-xl font-bold">Manage Courses</h4>
-      <p class="mt-2">Add, update, or delete courses with full details.</p>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded w-full hover:bg-green-700">Login as Admin</button>
+      </form>
+      
+      <div class="mt-4 p-3 bg-gray-100 rounded text-sm">
+        <p class="font-semibold">Demo Admin Credentials:</p>
+        <p>Email: admin@mdrs.com</p>
+        <p>Password: admin123</p>
+      </div>
     </div>
-    <div class="bg-white p-5 rounded shadow">
-      <h4 class="text-xl font-bold">Student Records</h4>
-      <p class="mt-2">View enrolled students and track their progress.</p>
-    </div>
-    <div class="bg-white p-5 rounded shadow">
-      <h4 class="text-xl font-bold">Payment Analytics</h4>
-      <p class="mt-2">Monitor revenue and transactions in real-time.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<script>
-  function adminLogin(event) {
-    event.preventDefault();
-    const email = document.getElementById("admin-email").value;
-    const password = document.getElementById("admin-password").value;
+  <script>
+    // Fixed admin credentials (in real application, this would be handled by backend)
+    const ADMIN_CREDENTIALS = {
+      email: 'admin@mdrs.com',
+      password: 'admin123'
+    };
 
-    // Dummy admin credentials (replace with real validation later)
-    if (email === "admin@eduplatform.com" && password === "admin123") {
-      document.getElementById("dashboard").classList.remove("hidden");
-      document.getElementById("admin-login").classList.add("hidden");
-    } else {
-      alert("Invalid admin credentials!");
+    // Track login status
+    let isAdminLoggedIn = false;
+    let isStudentLoggedIn = false;
+
+    // Admin login function
+    function adminLogin(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('admin-email').value;
+      const password = document.getElementById('admin-password').value;
+      const errorDiv = document.getElementById('login-error');
+      
+      // Validate credentials
+      if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+        // Successful login
+        isAdminLoggedIn = true;
+        
+        // Hide error message
+        errorDiv.style.display = 'none';
+        
+        // Show admin-only elements
+        document.getElementById('dashboard').style.display = 'block';
+        document.getElementById('dashboard-link').style.display = 'inline';
+        document.getElementById('logout-btn').style.display = 'inline';
+        
+        // Hide admin login section
+        document.getElementById('admin-login').style.display = 'none';
+        
+        // Scroll to dashboard
+        document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+        
+        // Clear form
+        document.getElementById('admin-email').value = '';
+        document.getElementById('admin-password').value = '';
+        
+        alert('Welcome Admin! You have successfully logged in.');
+      } else {
+        // Failed login
+        errorDiv.style.display = 'block';
+        errorDiv.textContent = 'Invalid admin credentials. Please try again.';
+      }
     }
-  }
-</script>
 
-  <!-- Footer -->
-  <footer class="bg-white p-4 text-center border-t mt-10">
-    <p>&copy; 2025 EduPlatform. All rights reserved.</p>
-  </footer>
+    // Student login function
+    function studentLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('student-email').value;
+      const password = document.getElementById('student-password').value;
+      
+      // In a real application, this would validate against a database
+      alert(`Student login attempted with email: ${email}`);
+      // Simulate successful login
+      isStudentLoggedIn = true;
+    }
+
+    // Student signup function
+    function studentSignup(event) {
+      event.preventDefault();
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const confirmPassword = document.getElementById('signup-confirm-password').value;
+      
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+      
+      // In a real application, this would save to database
+      alert(`Account created successfully for ${name}!`);
+      showLoginForm();
+    }
+
+    // Toggle between login and signup forms
+    function showLoginForm() {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('login-tab').classList.add('bg-blue-600', 'text-white');
+      document.getElementById('login-tab').classList.remove('bg-gray-300', 'text-gray-700');
+      document.getElementById('signup-tab').classList.add('bg-gray-300', 'text-gray-700');
+      document.getElementById('signup-tab').classList.remove('bg-blue-600', 'text-white');
+    }
+
+    function showSignupForm() {
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('signup-form').style.display = 'block';
+      document.getElementById('signup-tab').classList.add('bg-blue-600', 'text-white');
+      document.getElementById('signup-tab').classList.remove('bg-gray-300', 'text-gray-700');
+      document.getElementById('login-tab').classList.add('bg-gray-300', 'text-gray-700');
+      document.getElementById('login-tab').classList.remove('bg-blue-600', 'text-white');
+    }
+
+    // Logout function
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        isAdminLoggedIn = false;
+        isStudentLoggedIn = false;
+        
+        // Hide admin-only elements
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('dashboard-link').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'none';
+        document.getElementById('upload').style.display = 'none';
+        
+        // Show admin login section
+        document.getElementById('admin-login').style.display = 'block';
+        
+        alert('You have been logged out successfully.');
+      }
+    }
+
+    // Show specific section (for admin dashboard buttons)
+    function showSection(sectionId) {
+      if (!isAdminLoggedIn) {
+        alert('Access denied. Please login as admin first.');
+        return;
+      }
+      
+      document.getElementById(sectionId).style.display = 'block';
+      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Upload course function (admin only)
+    function uploadCourse(event) {
+      event.preventDefault();
+      
+      if (!isAdminLoggedIn) {
+        alert('Access denied. Please login as admin first.');
+        return;
+      }
+      
+      const title = document.getElementById('course-title').value;
+      const description = document.getElementById('course-description').value;
+      const price = document.getElementById('course-price').value;
+      const category = document.getElementById('course-category').value;
+      
+      // In a real application, this would send data to backend
+      alert(`Course "${title}" uploaded successfully!\nCategory: ${category}\nPrice: $${price}\nDescription: ${description}`);
+      
+      // Clear form
+      event.target.reset();
+    }
+
+    // Process payment function
+    function processPayment(event) {
+      event.preventDefault();
+      
+      const cardholderName = document.getElementById('cardholder-name').value;
+      const cardNumber = document.getElementById('card-number').value;
+      const expiry = document.getElementById('expiry').value;
+      const cvv = document.getElementById('cvv').value;
+      
+      // Basic validation
+      if (cardNumber.length < 16) {
+        alert('Please enter a valid card number');
+        return;
+      }
+      
+      // Simulate payment processing
+      alert(`Payment processed successfully!\nCardholder: ${cardholderName}\nCard ending in: ${cardNumber.slice(-4)}`);
+      
+      // Clear form
+      event.target.reset();
+    }
+
+    // Show student records (admin only)
+    function showStudentRecords() {
+      if (!isAdminLoggedIn) {
+        alert('Access denied. Please login as admin first.');
+        return;
+      }
+      
+      alert('Student Records:\n\n1. John Doe - Python Course - Progress: 75%\n2. Jane Smith - Data Science - Progress: 45%\n3. Mike Johnson - Web Development - Progress: 90%');
+    }
+
+    // Show analytics (admin only)
+    function showAnalytics() {
+      if (!isAdminLoggedIn) {
+        alert('Access denied. Please login as admin first.');
+        return;
+      }
+      
+      alert('Payment Analytics:\n\nTotal Revenue: $15,450\nTotal Enrollments: 127\nMost Popular Course: Python for Beginners\nThis Month: $3,200');
+    }
+
+    // Protect dashboard access via navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      const dashboardLink = document.getElementById('dashboard-link');
+      dashboardLink.addEventListener('click', function(e) {
+        if (!isAdminLoggedIn) {
+          e.preventDefault();
+          alert('Access denied. Please login as admin first.');
+          document.getElementById('admin-login').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
