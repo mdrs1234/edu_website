@@ -145,6 +145,56 @@
       </form>
     </div>
   </section>
+  <!-- Admin Login Section -->
+<section id="admin-login" class="p-10">
+  <h3 class="text-3xl font-semibold text-center mb-6">Admin Login</h3>
+  <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+    <form onsubmit="return adminLogin(event)">
+      <label class="block mb-2">Admin Email</label>
+      <input type="email" id="admin-email" class="w-full p-2 border rounded mb-4" required>
+
+      <label class="block mb-2">Password</label>
+      <input type="password" id="admin-password" class="w-full p-2 border rounded mb-6" required>
+
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700">Login as Admin</button>
+    </form>
+  </div>
+</section>
+
+<!-- Admin Dashboard Section (initially hidden) -->
+<section id="dashboard" class="p-10 hidden">
+  <h3 class="text-3xl font-semibold text-center mb-6">Admin Dashboard</h3>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+    <div class="bg-white p-5 rounded shadow">
+      <h4 class="text-xl font-bold">Manage Courses</h4>
+      <p class="mt-2">Add, update, or delete courses with full details.</p>
+    </div>
+    <div class="bg-white p-5 rounded shadow">
+      <h4 class="text-xl font-bold">Student Records</h4>
+      <p class="mt-2">View enrolled students and track their progress.</p>
+    </div>
+    <div class="bg-white p-5 rounded shadow">
+      <h4 class="text-xl font-bold">Payment Analytics</h4>
+      <p class="mt-2">Monitor revenue and transactions in real-time.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function adminLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById("admin-email").value;
+    const password = document.getElementById("admin-password").value;
+
+    // Dummy admin credentials (replace with real validation later)
+    if (email === "admin@eduplatform.com" && password === "admin123") {
+      document.getElementById("dashboard").classList.remove("hidden");
+      document.getElementById("admin-login").classList.add("hidden");
+    } else {
+      alert("Invalid admin credentials!");
+    }
+  }
+</script>
 
   <!-- Footer -->
   <footer class="bg-white p-4 text-center border-t mt-10">
